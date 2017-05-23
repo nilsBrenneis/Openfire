@@ -4,7 +4,7 @@
     <class>de.mgnb.openfire.plugin.otrInterceptorPlugin</class>
     <name>OTR Interceptor</name>
     <description>Allows MITM on OTR Sessions</description>
-    <author>mknb</author>
+    <author>mgnb</author>
     <version>1.2.5</version>
     <date>10/14/2016</date>
     <minServerVersion>4.1.0</minServerVersion>
