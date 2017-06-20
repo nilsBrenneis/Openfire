@@ -12,30 +12,32 @@ import org.xmpp.packet.Packet;
 
 import java.io.File;
 
-
 public class otrInterceptorPlugin implements Plugin, PacketInterceptor {
 
-    private InterceptorManager interceptorManager;
-    private MessageRouter messageRouter;
+	private InterceptorManager interceptorManager;
 
-    public otrInterceptorPlugin() {
-        interceptorManager = InterceptorManager.getInstance();
-        messageRouter = XMPPServer.getInstance().getMessageRouter();
-    }
+	public otrInterceptorPlugin() {
+		interceptorManager = InterceptorManager.getInstance();
+	}
 
-    @Override
-    public void initializePlugin(PluginManager manager, File pluginDirectory) {
-        System.out.println("Hallo Weltli");
-        interceptorManager.addInterceptor(this);
-    }
+	@Override
+	public void initializePlugin(PluginManager manager, File pluginDirectory) {
+		System.out.println("Hallo Welt");
+		interceptorManager.addInterceptor(this);
+	}
 
-    @Override
-    public void destroyPlugin() {
-        System.out.println("Tschuess Welt");
-    }
+	@Override
+	public void destroyPlugin() {
+		interceptorManager.removeInterceptor(this);
+	}
 
-    @Override
-    public void interceptPacket(Packet packet, Session session, boolean incoming, boolean processed) throws PacketRejectedException {
-
-    }
+	@Override
+	public void interceptPacket(Packet packet, Session session, boolean incoming, boolean processed)
+			throws PacketRejectedException {
+		if (!processed) {
+			System.out.println(packet.getFrom());
+			System.out.println(packet.getTo());
+			System.out.println(packet.getElement().getText());
+		}
+	}
 }
